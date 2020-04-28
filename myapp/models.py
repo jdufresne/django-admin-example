@@ -2,7 +2,8 @@ from django.db import models
 
 
 class ManyInstancesModel(models.Model):
-    pass
+    value1 = models.CharField(max_length=100, blank=True)
+    value2 = models.CharField(max_length=100, blank=True)
 
 
 class StackedModel(models.Model):

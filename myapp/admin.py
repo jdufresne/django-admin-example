@@ -13,6 +13,9 @@ class TabularInline(admin.TabularInline):
 @admin.register(models.ManyInstancesModel)
 class ManyInstancesModelAdmin(admin.ModelAdmin):
     inlines = [StackedInline, TabularInline]
+    list_display = ['__str__', 'value1', 'value2']
+    list_editable = ['value1', 'value2']
+    prepopulated_fields = {'value2': ['value1']}
 
 
 @admin.register(models.ForeignKeyModel)
