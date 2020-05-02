@@ -22,10 +22,13 @@ class ManyInstancesModelAdmin(admin.ModelAdmin):
 class ForeignKeyModelAdmin(admin.ModelAdmin):
     raw_id_fields = ['parent']
     list_display = ['text', 'text2']
+    list_filter = ['deleted', 'safe']
 
 
 @admin.register(models.UnchangeableModel)
 class UnchangeableModelAdmin(admin.ModelAdmin):
+    actions = None
+
     def has_change_permission(self, request, obj=None):
         return False
 

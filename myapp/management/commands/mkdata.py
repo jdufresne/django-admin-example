@@ -19,3 +19,5 @@ class Command(BaseCommand):
 
         parent = models.ManyInstancesModel.objects.create()
         models.ForeignKeyModel.objects.create(parent=parent)
+
+        models.UnchangeableModel.objects.create()
