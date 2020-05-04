@@ -7,7 +7,7 @@ class ManyInstancesModel(models.Model):
     value2 = models.CharField(max_length=100, blank=True)
 
     def get_absolute_url(self):
-        return reverse('admin:myapp_manyinstancesmodel_change', args=(self.pk,))
+        return reverse("admin:myapp_manyinstancesmodel_change", args=(self.pk,))
 
 
 class StackedModel(models.Model):

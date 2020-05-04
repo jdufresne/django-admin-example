@@ -6,12 +6,9 @@ from ... import models
 
 class Command(BaseCommand):
     def handle(self, **options):
-        User.objects.create_superuser(os.environ['USERNAME'], password='p')
+        User.objects.create_superuser(os.environ["USERNAME"], password="p")
         models.ManyInstancesModel.objects.bulk_create(
-            [
-                models.ManyInstancesModel()
-                for _ in range(120)
-            ]
+            [models.ManyInstancesModel() for _ in range(120)]
         )
 
         parent = models.ManyInstancesModel.objects.create()
