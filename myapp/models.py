@@ -1,9 +1,13 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ManyInstancesModel(models.Model):
     value1 = models.CharField(max_length=100, blank=True)
     value2 = models.CharField(max_length=100, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('admin:myapp_manyinstancesmodel_change', args=(self.pk,))
 
 
 class StackedModel(models.Model):
