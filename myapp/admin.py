@@ -24,6 +24,7 @@ class ForeignKeyModelAdmin(admin.ModelAdmin):
     raw_id_fields = ["parent"]
     list_display = ["text", "text2"]
     list_filter = ["deleted", "safe"]
+    search_fields = ["text", "text2"]
 
 
 @admin.register(models.UnchangeableModel)
