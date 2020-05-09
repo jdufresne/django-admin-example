@@ -1,9 +1,13 @@
-.PHONY: data
-data:
-	rm -f db.sqlite3
-	python manage.py migrate --run-syncdb
-	python manage.py mkdata
-
 .PHONY: run
-run: data
-	python manage.py runserver
+run: venv data
+	venv/bin/python manage.py runserver
+
+venv:
+	python -m venv venv
+	venv/bin/pip install -e ../django
+
+.PHONY: data
+data: venv
+	rm -f db.sqlite3
+	venv/bin/python manage.py migrate --run-syncdb
+	venv/bin/python manage.py mkdata
