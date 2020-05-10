@@ -17,11 +17,13 @@ class ManyInstancesModelAdmin(admin.ModelAdmin):
     list_display = ["__str__", "value1", "value2"]
     list_editable = ["value1", "value2"]
     prepopulated_fields = {"value2": ["value1"]}
+    search_fields = ["value1", "value2"]
 
 
 @admin.register(models.ForeignKeyModel)
 class ForeignKeyModelAdmin(admin.ModelAdmin):
     raw_id_fields = ["parent"]
+    autocomplete_fields = ["other"]
     list_display = ["text", "text2"]
     list_filter = ["deleted", "safe"]
     search_fields = ["text", "text2"]

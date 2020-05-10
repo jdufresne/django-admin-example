@@ -28,6 +28,9 @@ class TabularModel(models.Model):
 
 class ForeignKeyModel(models.Model):
     parent = models.ForeignKey(ManyInstancesModel, on_delete=models.CASCADE)
+    other = models.ForeignKey(
+        ManyInstancesModel, on_delete=models.CASCADE, null=True, related_name="+"
+    )
     text = models.CharField(max_length=100, blank=True)
     text2 = models.CharField(max_length=100, blank=True)
     deleted = models.BooleanField(default=False)
