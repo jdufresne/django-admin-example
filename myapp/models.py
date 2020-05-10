@@ -13,11 +13,17 @@ class ManyInstancesModel(models.Model):
 class StackedModel(models.Model):
     parent = models.ForeignKey(ManyInstancesModel, on_delete=models.CASCADE)
     text = models.CharField(max_length=100)
+    date = models.DateField(blank=True)
+    time = models.TimeField(blank=True)
+    datetime = models.DateTimeField(blank=True)
 
 
 class TabularModel(models.Model):
     parent = models.ForeignKey(ManyInstancesModel, on_delete=models.CASCADE)
     text = models.CharField(max_length=100, help_text="The model's text")
+    date = models.DateField(blank=True)
+    time = models.TimeField(blank=True)
+    datetime = models.DateTimeField(blank=True)
 
 
 class ForeignKeyModel(models.Model):
