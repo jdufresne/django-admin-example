@@ -5,6 +5,7 @@ run: venv data
 venv:
 	python -m venv venv
 	venv/bin/pip install -e ../django
+	venv/bin/pip install docutils
 
 .PHONY: data
 data: venv
