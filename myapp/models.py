@@ -2,12 +2,26 @@ from django.db import models
 from django.urls import reverse
 
 
+class SoftDeletedModelManager(models.Manager):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(deleted=False)
+
+
+class SoftDeletedModel(models.Model):
+    value = models.CharField(max_length=100)
+    deleted = models.BooleanField(default=False)
+
+    objects = SoftDeletedModelManager()
+    allobjects = models.Manager()
+
+
 class ManyInstancesModel(models.Model):
     value1 = models.CharField(max_length=100, blank=True)
     value2 = models.CharField(max_length=100, blank=True)
 
     def get_absolute_url(self):
-        return reverse("admin:myapp_manyinstancesmodel_change", args=(self.pk,))
+        return reverse("admin:myapp_manyinstancesmodel_change", args=(self.pk))
 
 
 class StackedModel(models.Model):
@@ -31,6 +45,7 @@ class ForeignKeyModel(models.Model):
     other = models.ForeignKey(
         ManyInstancesModel, on_delete=models.CASCADE, null=True, related_name="+"
     )
+    thing = models.ForeignKey(SoftDeletedModel, on_delete=models.CASCADE, null=True)
     text = models.CharField(max_length=100, blank=True)
     text2 = models.CharField(max_length=100, blank=True)
     deleted = models.BooleanField(default=False)

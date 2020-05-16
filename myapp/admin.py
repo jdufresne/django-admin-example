@@ -3,6 +3,12 @@ from django.contrib import admin
 from . import models
 
 
+@admin.register(models.SoftDeletedModel)
+class SoftDeletedModelAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        return self.model.allobjects.get_queryset()
+
+
 class StackedInline(admin.StackedInline):
     model = models.StackedModel
 
