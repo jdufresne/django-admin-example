@@ -2,10 +2,9 @@
 run: venv data
 	venv/bin/python manage.py runserver
 
-venv:
-	python -m venv venv
-	venv/bin/pip install -e ../django
-	venv/bin/pip install docutils
+venv: requirements.txt
+	python -m venv $@
+	venv/bin/pip install -r $<
 
 .PHONY: data
 data: venv
