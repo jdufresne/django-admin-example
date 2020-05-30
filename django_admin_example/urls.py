@@ -8,5 +8,5 @@ urlpatterns = i18n_patterns(
     path("", RedirectView.as_view(url=reverse_lazy("admin:index"))),
     path("admin/", admin.site.urls),
     path("admindocs/", include("django.contrib.admindocs.urls")),
-    path('__debug__/', include(debug_toolbar.urls)),
+    path("__debug__/", include(debug_toolbar.urls)),
 )
