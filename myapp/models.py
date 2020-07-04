@@ -43,7 +43,7 @@ class TabularModel(models.Model):
 class ForeignKeyModel(models.Model):
     parent = models.ForeignKey(ManyInstancesModel, on_delete=models.CASCADE)
     other = models.ForeignKey(
-        ManyInstancesModel, on_delete=models.CASCADE, null=True, related_name="+"
+        ManyInstancesModel, on_delete=models.SET_NULL, null=True, related_name="+"
     )
     thing = models.ForeignKey(SoftDeletedModel, on_delete=models.CASCADE, null=True)
     text = models.CharField(max_length=100, blank=True)

@@ -30,7 +30,8 @@ class ManyInstancesModelAdmin(admin.ModelAdmin):
 class ForeignKeyModelAdmin(admin.ModelAdmin):
     raw_id_fields = ["parent"]
     autocomplete_fields = ["other"]
-    list_display = ["text", "text2"]
+    list_display = ["text", "text2", "parent"]
+    list_editable = ["parent"]
     list_filter = ["deleted", "safe"]
     search_fields = ["text", "text2"]
 
