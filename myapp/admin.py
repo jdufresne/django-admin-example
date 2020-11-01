@@ -6,6 +6,8 @@ from . import models
 @admin.register(models.SoftDeletedModel)
 class SoftDeletedModelAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
+        # Query with other.
+        list(self.model.allobjects.using('other'))
         return self.model.allobjects.get_queryset()
 
 
